@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+    <h1>Results for ZIP Code</h1>
+    <p><strong>City:</strong> {{ city }}</p>
+    <p><strong>State:</strong> {{ state }}</p>
+    {% if district %}
+        <p><strong>District:</strong> {{ district }}</p>
+    {% else %}
+        <p><strong>No district found, showing state-level representatives.</strong></p>
+    {% endif %}
+
+    <h2>Representatives</h2>
+    {% if politicians %}
+        <ul>
+        {% for person in politicians %}
+            <li>
+                <strong>{{ person.name }}</strong> -- {{ person.party }},    {{ person.chamber }}
+                <br>
+                District: {{ person.district }}
+                <br>
+                Term: {{ person.startYear }} - {{ person.endYear }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No representatives found.</p>
+    {% endif %}
+
+    <a href="/">Search Again</a>
+</body>
+</html>
